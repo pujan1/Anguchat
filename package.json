@@ -12,5 +12,8 @@
   "dependencies": {
     "express": "*",
     "path": "*"
+  },
+  "engines": {
+    "node": "7.7.4"
   }
 }
