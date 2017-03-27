@@ -34,6 +34,8 @@
                     <div class="panel-heading">Room 1</div>
                     <div class="panel-body">
                         <h1> Room 1</h1>
+                        <button ng-if="name==undefined" class="btn btn-default" ng-click="authfb()"> Log in with Facebook</button>
+                        <p ng-if="name!==undefined"> Loggen in as <strong> {{name}} </strong> </p>
                         <p ng-repeat="m in messages"><b>{{m.message}}</b>&nbsp;&nbsp;&nbsp; -  <i> sent on {{m.date | date:'medium'}}</i></p>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Message here..." ng-model="messageText">
