@@ -2,6 +2,7 @@ var app = angular.module('chatApp', ['ui.bootstrap', 'firebase']);
 
 var onblur;
 var onblur2;
+var commonname;
 
 
 app.controller('ChatController', function($scope, $firebaseArray, $firebaseAuth) {
@@ -45,7 +46,8 @@ app.controller('ChatController', function($scope, $firebaseArray, $firebaseAuth)
          $scope.send = function(message) {
             $scope.messages.$add({
                 message: $scope.messageText,
-                date: Date.now()
+                date: Date.now(),
+                name: $scope.name
             })
          }
 
@@ -54,6 +56,7 @@ app.controller('ChatController', function($scope, $firebaseArray, $firebaseAuth)
                 
                 $scope.name = firebaseUser.user.displayName;
                 console.log("Signed in as:", firebaseUser);
+                commonname = firebaseUser.user.displayName;
               }).catch(function(error) {
                 console.log("Authentication failed:", error);
               });
@@ -103,6 +106,17 @@ app.controller('ChatController2', function($scope, $firebaseArray) {
                 message: $scope.messageText2,
                 date: Date.now()
             })
+         }
+
+         $scope.authfb = function(){
+           auth.$signInWithPopup("facebook").then(function(firebaseUser) {
+                
+                $scope.name = firebaseUser.user.displayName;
+                console.log("Signed in as:", firebaseUser);
+                commonname = firebaseUser.user.displayName;
+              }).catch(function(error) {
+                console.log("Authentication failed:", error);
+              });
          }
 })
 

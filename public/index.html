@@ -36,11 +36,14 @@
                         <h1> Room 1</h1>
                         <button ng-if="name==undefined" class="btn btn-default" ng-click="authfb()"> Log in with Facebook</button>
                         <p ng-if="name!==undefined"> Loggen in as <strong> {{name}} </strong> </p>
-                        <p ng-repeat="m in messages"><b>{{m.message}}</b>&nbsp;&nbsp;&nbsp; -  <i> sent on {{m.date | date:'medium'}}</i></p>
+                        <hr>
+                        <div   class="clearfix" ng-repeat="m in messages">
+                        <b style="font-size: 25px;">{{m.message}}</b>&nbsp;&nbsp;&nbsp;   <span style="float: right;"><i>- sent on {{m.date | date:'MMM d @ h:mma'}}</i></span><br>
+                         <span style="float:right;"><i> by {{m.name}}</i> </span> <hr> </div>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Message here..." ng-model="messageText">
                         </div>
-                        <button type="submit" class="btn btn-default" ng-click="send(message)">Send</button>
+                        <button ng-disabled="name==undefined" type="submit" class="btn btn-default" ng-click="send(message)">Send</button>
                     </div>
                 </div>
             </div>
@@ -55,6 +58,9 @@
                     <div class="panel-heading">Room 2</div>
                     <div class="panel-body">
                         <h1> Room 2</h1>
+                        <button ng-if="name==undefined" class="btn btn-default" ng-click="authfb()"> Log in with Facebook</button>
+                        <p ng-if="name!==undefined"> Loggen in as <strong> {{name}} </strong> </p>
+                        <hr>
                         <p ng-repeat="m in messages2"> <b>{{m.message}}</b>&nbsp;&nbsp;&nbsp; -    <i>sent on &nbsp;  {{m.date | date:'medium'}}</i></p>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Message here..." ng-model="messageText2">
